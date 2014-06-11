@@ -1,0 +1,32 @@
+{
+  "family": "appay",
+  "name": "appay",
+  "version": "1.0.0",
+  "description": "The best project ever.",
+  "homepage": "https://github.com/csw1221/appay",
+  "author": "csw1221",
+  "maintainers": [
+    "csw1221"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/csw1221/appay.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [],
+  "licenses": "MIT",
+  "spm": {
+    "output": [
+      "appay.js",
+      "appay.css"
+    ],
+    "alias": {},
+    "devAlias": {},
+    "engines": {}
+  }
+  "scripts": {
+        "postinstall": "scripts/postinstall.js"
+    }
+}

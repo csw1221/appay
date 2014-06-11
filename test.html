@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="easyui/jquery.min.js"></script>   
+<script>
+function doSave() {
+		var data = {
+		    	sortId : $("#sortId").val(), 
+		    	rankId : $("#rankId").val(),
+		    	sortName : $("#sortName").val()
+		    };
+		var arr = [
+			'nextsortId[0]:'
+		];
+		$("input[name='nextsortId']").each(function(index){  
+		    data["nextsortId["+index+"]"]=$(this).val();
+			console.log(data["nextsortId["+index+"]"]);
+			console.log(data["rankId"])
+			
+		}) 
+		console.log(data)
+		var nextsortId = new Array();
+		var nextsortName = new Array();
+		$("input[name='nextsortId']").each(function(){  
+			nextsortId.push($(this).val());
+		}) 
+		$("input[name='nextsortName']").each(function(){  
+			nextsortName.push($(this).val());
+		})
+		var url = 'top.html';
+		jQuery.ajax({
+		    url: url,
+		    data: data,
+		    success: function (data) {
+		       if(data == 'success'){
+		       		$(".aui_close").trigger("click");
+		       		location.href = '<@c.url value="/netbank/livemanage/liveSortList.htm" />';
+		       }else if(data == 'already'){
+		       		alert("当前存在未通过审核的修改请求,不能再次提交修改!");
+		       }else{
+		       		alert("操作失败,请先审核最早的记录!");
+		       }
+		    },
+		    cache:false
+		});
+	}
+
+</script>
+</head>
+
+<body>
+<input type="text" value="asdfasdf"  id="sortId">
+<input type="text" value="asdfasdf"  id="rankId">
+<input type="text" value="asdfasdf" id="sortName">
+<input type="text" value="asdfas"   name='nextsortId' class="cc">
+<input type="text" value="asdfsadf"  name='nextsortId' class="cc">
+<input type="text" value="asdf"  name='nextsortId' class="cc">
+<input type="text" value="asdf" name='nextsortId' class="cc">
+<input name="sb" type="button" id="sb" onclick="doSave()" value="提交" />
+</body>
+</html>
